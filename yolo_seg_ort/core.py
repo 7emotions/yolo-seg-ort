@@ -122,11 +122,28 @@ class YOLOSeg:
     def __init__(
         self,
         onnx_model: str,
-        conf: float = 0.25,
+        conf: float = 0.5,
         iou: float = 0.7,
         imgsz: Union[int, Tuple[int, int]] = 640,
-        classes: List[str] = ["Grass", "Ground", "Ramp", "Road", "Stairs"],
+            classes=None,
     ):
+        if classes is None:
+            classes = ["person", "bicycle", "car", "motorcycle", "airplane",
+                       "bus", "train", "truck", "boat", "traffic light",
+                       "fire hydrant", "stop sign", "parking meter", "bench", "bird",
+                       "cat", "dog", "horse", "sheep", "cow",
+                       "elephant", "bear", "zebra", "giraffe", "backpack",
+                       "umbrella", "handbag", "tie", "suitcase", "frisbee",
+                       "skis", "snowboard", "sports ball", "kite", "baseball bat",
+                       "baseball glove", "skateboard", "surfboard", "tennis racket", "bottle",
+                       "wine glass", "cup", "fork", "knife", "spoon",
+                       "bowl", "banana", "apple", "sandwich", "orange",
+                       "broccoli", "carrot", "hot dog", "pizza", "donut",
+                       "cake", "chair", "couch", "potted plant", "bed",
+                       "dining table", "toilet", "tv", "laptop", "mouse",
+                       "remote", "keyboard", "cell phone", "microwave", "oven",
+                       "toaster", "sink", "refrigerator", "book", "clock",
+                       "vase", "scissors", "teddy bear", "hair drier", "toothbrush"]
         self.session = ort.InferenceSession(
             onnx_model,
             providers=["CPUExecutionProvider"],
