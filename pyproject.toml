@@ -7,7 +7,7 @@ where = ["yolo_seg_ort"]
 
 [project]
 name = "yolo_seg_ort"
-version = "0.1.0"
+version = "1.0.0"
 description = "Deploy YOLO-Seg ONNX model with ONNX Runtime"
 readme = "README.md"
 requires-python = ">=3.8"
